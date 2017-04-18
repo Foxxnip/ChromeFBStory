@@ -1,0 +1,84 @@
+.unseen-fb-story-item {
+  border-style: solid;
+  border-width: 2px;
+  border-color: #5890FF;
+  margin-bottom: 3px;
+}
+
+.seen-fb-story-item {
+  border-style: solid;
+  border-width: 1px;
+  border-color: gray;
+  padding: 4px;
+}
+
+.fb-story-author-image {
+  width: 32px;
+  height: 32px;
+  left: 10px;
+  top: 15px;
+  border-radius: 50%;
+  z-index: 1;
+  position: absolute;
+}
+
+.fb-story-author-username {
+  left: 55px;
+  top: 25px;
+  color: white;
+  z-index: 1;
+  position: absolute;
+}
+
+.fb-story-seen-list {
+  left: 10px;
+  top: 70px;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+}
+
+.fb-video-story-item {
+  width: auto;
+  height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  bottom: 0px;
+}
+
+#fb-tray-container {
+  display: block;
+  max-height: 130px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.fb-tray-item-image {
+  width: 48px;
+  height: 48px;
+  margin: auto;
+  border-radius: 50%;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding: 3px;
+  cursor: pointer;
+}
+
+.fb-tray-container {
+  display: block;
+  max-height: 130px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.center-div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

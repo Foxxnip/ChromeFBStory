@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux';
 
-import count from './stories';
+import stories from './stories';
 
 export default combineReducers({
   stories

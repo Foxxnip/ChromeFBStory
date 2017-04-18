@@ -8,7 +8,7 @@ module.exports = {
 
   output: {
     filename: 'popup.js',
-    path: path.join(__dirname, '../', 'build'),
+    path: path.join(__dirname, '../', 'build/js'),
     publicPath: '/'
   },
 
@@ -23,7 +23,10 @@ module.exports = {
         test: /\.(jsx|js)?$/,
         loader: 'babel-loader',
         exclude: /(node_modules)/,
-        include: path.join(__dirname, 'src'),
+        include: [
+          path.join(__dirname, 'src'),
+          path.join(__dirname, '../utils')
+        ],
         query: {
           presets: ['es2015', 'react']
         }

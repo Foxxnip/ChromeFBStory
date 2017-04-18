@@ -5,19 +5,28 @@
   "version": "1.0.0",
   "background": {
     "scripts": [
-      "event.js"
+      "js/event.js"
     ],
     "persistent": true
   },
-  "browser_action": {
-    "default_title": "Chrome FB Story",
-    "default_popup": "popup.html"
-  },
+  "permissions": [
+    "cookies",
+    "webRequest",
+    "webRequestBlocking",
+    "*://*.facebook.com/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
-      "css": [],
-      "js": ["content.js"]
+      "matches": ["*://*.facebook.com/*"],
+      "css" : ["css/main.css"],
+      "js": ["js/content.js"]
     }
-  ]
+  ],
+  "web_accessible_resources": [
+    "js/*",
+    "css/*",
+    "img/*",
+    "html/*"
+  ],
+  "icons": { "16": "img/icon-16.png", "128": "img/icon-128.png" }
 }

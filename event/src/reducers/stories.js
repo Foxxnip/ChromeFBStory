@@ -1,7 +1,5 @@
 const initialState = {
-  friendStories: {
-    tray: []
-  }
+  friendStories: []
 };
 
 export default (state = initialState, action) => {
