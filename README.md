@@ -1,8 +1,8 @@
 # Chrome FB Story
 Chrome extension that lets you view your friends' Facebook Stories in the browser.
 
-<img src="https://cloud.githubusercontent.com/assets/2003684/25078697/52a9ecda-22ea-11e7-91e4-ad333ab0904e.png"/>
-<img src="https://cloud.githubusercontent.com/assets/2003684/25078698/52aa1796-22ea-11e7-997e-d930fc985cf9.png"/>
+<img src="https://cloud.githubusercontent.com/assets/2003684/25114715/94c22c56-23b5-11e7-94a9-64c789e27963.png"/>
+<img src="https://cloud.githubusercontent.com/assets/2003684/25114704/8271ee10-23b5-11e7-8b10-864913de7110.png"/>
 
 ### Installing Dependencies ###
 
