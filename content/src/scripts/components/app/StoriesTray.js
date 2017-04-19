@@ -19,6 +19,11 @@ class StoriesTray extends Component {
       var storyItem = storyTrayItem.node;
       var user = storyItem.other_participant;
       
+      // return an empty element if there are no story items for the user (the user deleted their story)
+      if(storyItem.threads.edges.length === 0) {
+        return (<span key={key}></span>);
+      }
+      
       if(user === null) {
         user = storyItem.threads.edges[0].node.direct_messages.edges[0].node.message_owner;
         user.name = "Your Story";
