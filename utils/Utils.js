@@ -46,7 +46,7 @@ export function showImageGallery(storyItems) {
       
       var storyAuthorImage = currItem.find('.fb-story-author-image');
       var storyAuthorUsername = currItem.find('.fb-story-author-username');
-      var storySeenList = currItem.find('.fb-story-seen-list');
+      var storySeenList = $(document.body).find('.fb-story-seen-list');
       
       // only inject the Story author attribution and seen list to the current slide if it doesn't already exist
       if(storyAuthorImage.length == 0 && storyAuthorUsername.length == 0 && storySeenList.length == 0) {
@@ -62,7 +62,7 @@ export function showImageGallery(storyItems) {
         
         $(currItem).append(storyAuthorImage);
         $(currItem).append(storyAuthorUsername);
-        $(currItem).append(storySeenList);
+        $(document.body).append(storySeenList);
       }
       
       var storyItem = gallery.currItem.storyItem;
@@ -101,9 +101,12 @@ export function showImageGallery(storyItems) {
         $('.pswp__video').each(function() {
           $(this)[0].pause();
         });
+        $('.fb-story-seen-list').remove();
+        $(document.body).css('overflowY', 'initial');
       });
       
       gallery.init();
+      $(document.body).css('overflowY', 'hidden');
     });
   }
   

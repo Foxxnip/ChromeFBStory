@@ -18,7 +18,7 @@ class StorySeenList extends Component {
   }
   
   componentDidMount() {
-    this.setState({listHeight: $(".pswp__container").height() - 90});
+    this.setState({listHeight: $(".pswp__container").height() - 110});
   }
   
   toggleStoryViewersList() {

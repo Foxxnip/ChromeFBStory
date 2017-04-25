@@ -35,6 +35,7 @@
   top: 70px;
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
+  z-index: 10000;
 }
 
 .fb-video-story-item {
