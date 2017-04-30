@@ -5,10 +5,10 @@ import {Store} from 'react-chrome-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {muiTheme} from '../../../utils/Constants';
-import {isVideo, getMediaItemUrl, getPswpElement, injectPswpContainer, showImageGallery} from '../../../utils/Utils';
+import {isVideo, getMediaItemUrl} from '../../../utils/Utils';
+import {getPswpElement, injectPswpContainer, showImageGallery} from '../../../utils/ContentUtils';
 import FacebookApi from '../../../utils/FacebookApi';
 import StoriesTray from './components/app/StoriesTray';
-import StorySeenList from './components/app/StorySeenList';
 import {List, ListItem} from 'material-ui/List';
 
 const proxyStore = new Store({portName: 'chrome-fb-story'});

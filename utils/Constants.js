@@ -3,7 +3,13 @@ import getMuiTheme from 'material-ui/styles/getMuiTheme';
 export const API_BASE = "https://graph.facebook.com/graphqlbatch/";
 export const AUTH_BASE = "https://www.facebook.com/v1.0/dialog/oauth/confirm";
 
+// UI colors
 export const COLOR_BLUE = "#5890FF";
+export const POPUP_BACKGROUND_COLOR_GRAY = "#E9EBEE";
+
+// UI dimensions 
+export const POPUP_CONTAINER_WIDTH = 562;
+export const POPUP_CONTAINER_HEIGHT = 600;
 
 export const muiTheme = getMuiTheme({
   palette: {

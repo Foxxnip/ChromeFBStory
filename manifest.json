@@ -9,6 +9,10 @@
     ],
     "persistent": true
   },
+  "browser_action": {
+    "default_title": "Chrome FB Story",
+    "default_popup": "html/popup.html"
+  },
   "permissions": [
     "cookies",
     "webRequest",
