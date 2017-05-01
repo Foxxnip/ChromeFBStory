@@ -32,5 +32,6 @@
     "img/*",
     "html/*"
   ],
-  "icons": { "16": "img/icon-16.png", "128": "img/icon-128.png" }
+  "icons": { "16": "img/icon-16.png", "128": "img/icon-128.png" },
+  "content_security_policy": "script-src 'self' https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js; object-src 'self'"
 }

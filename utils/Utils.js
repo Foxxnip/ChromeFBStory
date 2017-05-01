@@ -3,6 +3,7 @@ import JSZip from 'jszip';
 import JSZipUtils from 'jszip-utils';
 import FileSaver from 'file-saver';
 import moment from 'moment';
+import AnalyticsUtil from './AnalyticsUtil';
 
 // returns the "slide" object the StoryGallery in the popup uses
 export function getStoryGallerySlide(story, callback) {
@@ -47,6 +48,7 @@ export function downloadStory(trayItem, callback) {
   zip.generateAsync({type:"blob"})
   .then(function(content) {
     FileSaver.saveAs(content, getZipFileName(storyItems));
+    AnalyticsUtil.track("Download Story", AnalyticsUtil.getStoryObject(trayItem));
     if(callback) { callback(); }
   });
 }

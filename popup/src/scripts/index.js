@@ -6,6 +6,7 @@ import {Provider} from 'react-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {muiTheme} from '../../../utils/Constants';
+import AnalyticsUtil from '../../../utils/AnalyticsUtil';
 
 const proxyStore = new Store({
   portName: 'chrome-fb-story'
@@ -17,6 +18,7 @@ injectTapEventPlugin();
 
 // wait for the store to connect to the background page
 proxyStore.ready().then(() => {
+  AnalyticsUtil.initializeMixpanel();
   render(
     <Provider store={proxyStore}>
       <MuiThemeProvider muiTheme={muiTheme}>

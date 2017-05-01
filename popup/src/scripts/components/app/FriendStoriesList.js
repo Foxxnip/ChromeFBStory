@@ -7,6 +7,7 @@ import Subheader from 'material-ui/Subheader';
 import DownloadIcon from 'material-ui/svg-icons/file/file-download';
 import ImageGallery from 'react-image-gallery';
 import {downloadStory, getFacebookProfilePicture, getStoryGallerySlide} from '../../../../../utils/Utils';
+import AnalyticsUtil from '../../../../../utils/AnalyticsUtil';
 
 let SelectableList = makeSelectable(List);
 
@@ -24,6 +25,7 @@ class FriendStoriesList extends Component {
     this.setState({
       selectedIndex: index,
     });
+    AnalyticsUtil.track("Story List Item Clicked", AnalyticsUtil.getStoryObject(this.props.friendStories[index].node));
   }
   
   changeStory(storySlide) {

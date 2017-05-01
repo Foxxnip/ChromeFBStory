@@ -6,6 +6,7 @@ import {Tabs, Tab} from 'material-ui/Tabs';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import FriendStoriesList from './FriendStoriesList';
+import AnalyticsUtil from '../../../../../utils/AnalyticsUtil';
 
 import "../../../../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
@@ -21,6 +22,10 @@ class App extends Component {
     this.state = {
       currentStory: null
     }
+  }
+  
+  componentDidMount() {
+    AnalyticsUtil.track("Popup Opened", {itemsLength: this.props.stories.length});
   }
   
   setNewStory(story) {
