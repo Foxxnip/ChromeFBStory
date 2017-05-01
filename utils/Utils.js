@@ -34,6 +34,18 @@ export function getStoryGallerySlide(story, callback) {
   callback(storySlide);
 }
 
+// returns the "tray" object used to render the stories
+export function getStoryTray(stories) {
+  var response = stories.BATCH_0.response;
+  var tray = response[Object.keys(response)[0]].friends_stories_buckets.edges;
+  var yourStory = response[Object.keys(response)[0]].story_bucket;
+  var yourStoryItems = yourStory.edges;
+  if(yourStoryItems && yourStoryItems[0].node.threads.edges.length > 0) {
+    tray.unshift(yourStoryItems[0]);
+  }
+  return tray;
+}
+
 // downloads a zip file containing the user's Story
 export function downloadStory(trayItem, callback) {
   var zip = new JSZip();

@@ -18,12 +18,14 @@ injectTapEventPlugin();
 
 // wait for the store to connect to the background page
 proxyStore.ready().then(() => {
-  AnalyticsUtil.initializeMixpanel();
-  render(
-    <Provider store={proxyStore}>
-      <MuiThemeProvider muiTheme={muiTheme}>
-        <App/>
-      </MuiThemeProvider>  
-    </Provider>
-    , document.getElementById('app'));
+  setTimeout(function() {
+    AnalyticsUtil.initializeMixpanel();
+    render(
+      <Provider store={proxyStore}>
+        <MuiThemeProvider muiTheme={muiTheme}>
+          <App/>
+        </MuiThemeProvider>  
+      </Provider>
+      , document.getElementById('app'));
+    }, 100); 
   });

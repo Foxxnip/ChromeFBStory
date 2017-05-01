@@ -5,7 +5,7 @@ import {Store} from 'react-chrome-redux';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {muiTheme} from '../../../utils/Constants';
-import {isVideo, getMediaItemUrl} from '../../../utils/Utils';
+import {isVideo, getMediaItemUrl, getStoryTray} from '../../../utils/Utils';
 import {getPswpElement, injectPswpContainer, showImageGallery} from '../../../utils/ContentUtils';
 import FacebookApi from '../../../utils/FacebookApi';
 import StoriesTray from './components/app/StoriesTray';
@@ -46,19 +46,15 @@ function injectFriendStories(tray) {
     var fb_dtsg = document.getElementsByName('fb_dtsg')[0].value;
     FacebookApi.getAccessToken(fb_dtsg, (accessToken) => {
       FacebookApi.getFriendStories(accessToken, (stories) => {
-        var response = stories.BATCH_0.response;
-        var tray = response[Object.keys(response)[0]].friends_stories_buckets.edges;
-        
-        var yourStory = response[Object.keys(response)[0]].story_bucket;
-        var yourStoryItems = yourStory.edges;
-        if(yourStoryItems && yourStoryItems[0].node.threads.edges.length > 0) {
-          tray.unshift(yourStoryItems[0]);
-        }
+        proxyStore.dispatch({
+          type: 'SET_ACCESS_TOKEN',
+          accessToken: accessToken
+        });
 
         isInjectingContent = false; 
         proxyStore.dispatch({
           type: 'SET_FRIEND_STORIES',
-          friendStories: tray
+          friendStories: getStoryTray(stories)
         });
         
         renderStoryTray();  

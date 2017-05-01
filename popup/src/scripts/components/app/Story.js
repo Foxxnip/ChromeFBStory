@@ -108,7 +108,7 @@ class Story extends Component {
       {this.state.currentStoryItem.node.seenDirectUsers &&
         <FlatButton
         style={styles.storyViewersButton}
-        label={this.state.currentStoryItem.node.seenDirectUsers.edges.length}
+        label={(this.state.currentStoryItem.node.seenDirectUsers.edges.length) > 0 ? this.state.currentStoryItem.node.seenDirectUsers.edges.length : "0"}
         icon={<VisibilityIcon color={"#ffffff"}/>}
         onClick={() => this.toggleStoryViewersList()}/>
       }

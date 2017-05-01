@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {List, ListItem, makeSelectable} from 'material-ui/List';
 import Avatar from 'material-ui/Avatar';
+import RefreshIndicator from 'material-ui/RefreshIndicator';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import DownloadIcon from 'material-ui/svg-icons/file/file-download';
@@ -37,6 +38,13 @@ class FriendStoriesList extends Component {
   }
   
   render() {
+    const styles = {
+      refreshIndicator: {
+        position: 'relative',
+        margin: '0 auto'
+      }
+    };
+
     const friendStoriesListData = this.props.friendStories.map((friendStory, key) => {
       var storyItem = friendStory.node;
       var user = storyItem.other_participant;
@@ -65,10 +73,20 @@ class FriendStoriesList extends Component {
       });
       
       return (
-        <SelectableList value={this.state.selectedIndex} onChange={this.handleRequestChange.bind(this)}>
-          <Subheader>Facebook Stories</Subheader>
-          {friendStoriesListData}
-        </SelectableList>
+        <div>
+          {this.props.isLoading && 
+            <RefreshIndicator
+              size={40}
+              left={10}
+              top={0}
+              status="loading"
+              style={styles.refreshIndicator}/>
+          }
+          <SelectableList value={this.state.selectedIndex} onChange={this.handleRequestChange.bind(this)}>
+            <Subheader>Facebook Stories</Subheader>
+            {friendStoriesListData}
+          </SelectableList>
+        </div>
       )
     }
   }

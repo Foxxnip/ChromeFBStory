@@ -23,6 +23,14 @@ chrome.tabs.onUpdated.addListener(function(tabId, change, tab) {
   }
 });
 
+// listen for the content script to send us a message
+chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+  if (request.hasEmptyAccessToken) {
+    // the access token from the store is null, so we must launch Facebook to scrape the fb_dtsg and get the access token
+    chrome.tabs.create({url: "https://www.facebook.com/"});
+  }
+});
+
 // hook into web request and modify headers before sending the request
 chrome.webRequest.onBeforeSendHeaders.addListener(
   function(info) {

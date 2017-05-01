@@ -3,10 +3,13 @@ import {connect} from 'react-redux';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import {ListItem} from 'material-ui/List';
 import {Tabs, Tab} from 'material-ui/Tabs';
+import CircularProgress from 'material-ui/CircularProgress';
 import Avatar from 'material-ui/Avatar';
 import IconButton from 'material-ui/IconButton';
 import FriendStoriesList from './FriendStoriesList';
+import {getStoryTray} from '../../../../../utils/Utils';
 import AnalyticsUtil from '../../../../../utils/AnalyticsUtil';
+import FacebookApi from '../../../../../utils/FacebookApi';
 
 import "../../../../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
@@ -20,12 +23,27 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentStory: null
+      currentStory: null,
+      isFriendStoriesLoading: true
     }
   }
   
   componentDidMount() {
-    AnalyticsUtil.track("Popup Opened", {itemsLength: this.props.stories.length});
+    setTimeout(function() {
+      // if the access token from the store is null, open Facebook to retrieve it
+      if(this.props.accessToken === null) {
+        chrome.runtime.sendMessage({hasEmptyAccessToken: true});
+      } else {
+        FacebookApi.getFriendStories(this.props.accessToken, (stories) => {
+          this.props.dispatch({
+            type: 'SET_FRIEND_STORIES',
+            friendStories: getStoryTray(stories)
+          });
+          this.setState({isFriendStoriesLoading: false});
+        });
+      }
+      AnalyticsUtil.track("Popup Opened", {itemsLength: this.props.stories.length});
+    }.bind(this), 100);
   }
   
   setNewStory(story) {
@@ -62,12 +80,22 @@ class App extends Component {
     
     return (
       <div style={styles.popupContainer}>
-        {this.props.stories.length === 0 ?
+        {this.props.stories.length === 0 && !this.state.isFriendStoriesLoading &&
           <span className="center-div" style={styles.emptyState}>No stories available</span>
-          :
+        }
+        
+        {this.props.stories.length === 0 && this.state.isFriendStoriesLoading &&
+          <div style={{height: POPUP_CONTAINER_HEIGHT + 'px'}}>
+            <CircularProgress className="center-div" size={60}/>
+          </div>
+        }
+        
+        {this.props.stories.length > 0 &&
           <div>
             <div style={styles.friendsStoriesList}>
-              <FriendStoriesList onSelectStory={(story) => this.setNewStory(story)}/>
+              <FriendStoriesList
+                onSelectStory={(story) => this.setNewStory(story)}
+                isLoading={this.state.isFriendStoriesLoading}/>
             </div>
             <div style={styles.friendsStoryContainer}>
               {this.state.currentStory != null && this.state.currentStory}
@@ -81,7 +109,8 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    stories: state.stories.friendStories
+    stories: state.stories.friendStories,
+    accessToken: state.session.accessToken
   };
 };
 
