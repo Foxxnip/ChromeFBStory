@@ -12,13 +12,13 @@ export function getStoryGallerySlide(story, callback) {
     const url = getMediaItemUrl(item);
     if(isVideo(url)){
       return {
-        id: media.id,
+        id: item.id,
         original: url,
         renderItem: renderStoryVideoItem
       };
     } else {
       return {
-        id: media.id,
+        id: item.id,
         original: url,
         renderItem: renderStoryImage
       };
@@ -74,6 +74,7 @@ function renderStoryVideoItem(item) {
         id={item.id}
         src={item.original}
         controls
+        loop
         />
     </div>
   )

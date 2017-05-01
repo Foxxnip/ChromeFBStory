@@ -8,6 +8,7 @@ import DownloadIcon from 'material-ui/svg-icons/file/file-download';
 import ImageGallery from 'react-image-gallery';
 import {downloadStory, getFacebookProfilePicture, getStoryGallerySlide} from '../../../../../utils/Utils';
 import AnalyticsUtil from '../../../../../utils/AnalyticsUtil';
+import Story from './Story';
 
 let SelectableList = makeSelectable(List);
 
@@ -30,17 +31,7 @@ class FriendStoriesList extends Component {
   
   changeStory(storySlide) {
     const story = (
-      <ImageGallery
-        ref={i => this._imageGallery = i}
-        items={storySlide.media}
-        showThumbnails={false}
-        autoPlay={false}
-        showNav={true}
-        showPlayButton={false}
-        showFullscreenButton={false}
-        showBullets={false}
-        showIndex={false}
-        />
+      <Story item={storySlide} />
     );
     this.props.onSelectStory(story);
   }
