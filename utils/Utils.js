@@ -40,7 +40,7 @@ export function getStoryTray(stories) {
   var tray = response[Object.keys(response)[0]].friends_stories_buckets.edges;
   var yourStory = response[Object.keys(response)[0]].story_bucket;
   var yourStoryItems = yourStory.edges;
-  if(yourStoryItems && yourStoryItems[0].node.threads.edges.length > 0) {
+  if(yourStoryItems && yourStoryItems[0] && yourStoryItems[0].node.threads.edges.length > 0) {
     tray.unshift(yourStoryItems[0]);
   }
   return tray;
