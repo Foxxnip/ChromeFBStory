@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "Chrome FB Story",
-  "description": "Chrome extension that lets you view your friends' Facebook Stories in the browser.",
+  "name": "FB Story for Google Chrome™",
+  "description": "Chrome™ extension that lets you view your friends' Facebook Stories in the browser.",
   "version": "1.0.1",
   "background": {
     "scripts": [
@@ -10,7 +10,7 @@
     "persistent": true
   },
   "browser_action": {
-    "default_title": "Chrome FB Story",
+    "default_title": "FB Story for Google Chrome™",
     "default_popup": "html/popup.html"
   },
   "permissions": [

@@ -1,4 +1,4 @@
-# Chrome FB Story
+# FB Story for Google Chrome™
 Chrome extension that lets you view your friends' Facebook Stories in the browser.
 
 <img src="https://cloud.githubusercontent.com/assets/2003684/25114715/94c22c56-23b5-11e7-94a9-64c789e27963.png"/>
