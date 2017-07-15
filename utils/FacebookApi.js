@@ -10,6 +10,9 @@ function getAccessToken(fb_dtsg, callback) {
   return fetch(AUTH_BASE, {
     method: 'POST',
     credentials: 'include',
+    headers: new Headers({
+      'Content-Type': 'application/x-www-form-urlencoded'
+    }),
     body: queryParams(getAccessTokenRequestParams(fb_dtsg))
   }).then(checkStatus)
   .then(parseText)
